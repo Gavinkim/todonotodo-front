@@ -76,7 +76,7 @@
                     <div class="headline white--text mb-3 text-xs-center">
                         아이디어를 확인하고 평가해 보세요.
                     </div>
-                    <v-btn class="primary lighten-2 mt-5" dark large href="/pre-made-themes">
+                    <v-btn class="primary lighten-2 mt-5" dark large router to="/ideas">
                         Evaluate
                     </v-btn>
                 </v-layout>

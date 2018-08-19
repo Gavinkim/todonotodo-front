@@ -15,6 +15,8 @@ import {
   VDivider,
   VJumbotron,
   VParallax,
+  VTextarea,
+    VForm,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -35,6 +37,8 @@ Vue.use(Vuetify, {
     VDivider,
     VJumbotron,
     VParallax,
+    VTextarea,
+      VForm,
     transitions
   },
   theme: {
