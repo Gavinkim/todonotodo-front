@@ -4,24 +4,18 @@
             <v-flex xs12 sm10 md8 offset-sm1 offset-md2>
                 <v-card class="primary lighten-5">
                     <v-card-title>
-                        <h4 class="primary--text">개발자를 위한 개발자</h4>
+                        <h4 class="primary--text">Then we'll go with that data file!</h4>
                     </v-card-title>
                     <v-card-text>
                         <div class="info--text">
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
-                            개발자를 위한 개발자와 개발자 개발자를 위한 개발자와 개발자
+                            I'm a thing. But, like most politicians, he promised more than he could deliver.
+                            You won't have time for sleeping, soldier, not with all the bed making you'll be doing.
+                            Then we'll go with that data file! Hey, you add a one and two zeros to that or we walk! You're going to do his laundry?
+                            I've got to find a way to escape.
                         </div>
                     </v-card-text>
                     <v-card-actions>
-                        <v-btn icon><v-icon>favorite</v-icon></v-btn>
+                        <v-btn icon><v-icon color="red">favorite</v-icon></v-btn>
                         <v-btn icon><v-icon>share</v-icon></v-btn>
                         <v-spacer></v-spacer>
                         <v-btn flat to="/ideas">

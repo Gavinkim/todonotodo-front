@@ -19,6 +19,8 @@ import {
     VForm,
     VBadge,
     VAvatar,
+    VSubheader,
+    VPagination,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -43,6 +45,8 @@ Vue.use(Vuetify, {
       VForm,
       VBadge,
       VAvatar,
+      VSubheader,
+      VPagination,
     transitions
   },
   theme: {
