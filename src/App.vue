@@ -29,6 +29,16 @@
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
+    <!-- fixme: footer 정의를 다시 할것 -->
+    <v-footer class="primary dark">
+      <v-layout row wrap align-center>
+        <v-flex xs12>
+          <div class="white--text ml-3">
+            Todonotodo Footer
+          </div>
+        </v-flex>
+      </v-layout>
+    </v-footer>
   </v-app>
 </template>
 

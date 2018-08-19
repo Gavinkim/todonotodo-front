@@ -2,6 +2,7 @@ import Vue from 'vue'
 import {
   Vuetify,
   VApp,
+  VCard,
   VNavigationDrawer,
   VFooter,
   VList,
@@ -9,6 +10,11 @@ import {
   VIcon,
   VGrid,
   VToolbar,
+  VTooltip,
+  VTextField,
+  VDivider,
+  VJumbotron,
+  VParallax,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -16,6 +22,7 @@ import 'vuetify/src/stylus/app.styl'
 Vue.use(Vuetify, {
   components: {
     VApp,
+    VCard,
     VNavigationDrawer,
     VFooter,
     VList,
@@ -23,6 +30,11 @@ Vue.use(Vuetify, {
     VIcon,
     VGrid,
     VToolbar,
+    VTooltip,
+    VTextField,
+    VDivider,
+    VJumbotron,
+    VParallax,
     transitions
   },
   theme: {
