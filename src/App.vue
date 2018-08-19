@@ -53,7 +53,6 @@ export default {
             {icon: 'store',title: 'Ideas',link: '/ideas'},
             {icon: 'create',title: 'Add',link: '/idea/new'},
             {icon: 'person',title: 'Profile',link: '/profile'},
-            {icon: 'face',title: 'Sign up',link: '/signup'},
             {icon: 'lock_open',title: 'Sign in',link: '/signin'}
         ]
     }

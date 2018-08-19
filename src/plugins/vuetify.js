@@ -17,6 +17,8 @@ import {
   VParallax,
   VTextarea,
     VForm,
+    VBadge,
+    VAvatar,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -39,6 +41,8 @@ Vue.use(Vuetify, {
     VParallax,
     VTextarea,
       VForm,
+      VBadge,
+      VAvatar,
     transitions
   },
   theme: {

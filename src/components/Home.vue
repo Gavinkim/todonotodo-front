@@ -5,7 +5,7 @@
                 <v-layout column align-center justify-center class="white--text">
                     <h1 class="white--text mb-2 display-2 text-xs-center">당신의 아이디어를 검증하고 평가 받아 보세요</h1>
                     <v-btn class="primary lighten-2 mt-5" dark large router to="/idea/new">
-                        Get Start
+                        아이디어 등록하기
                     </v-btn>
                 </v-layout>
             </v-parallax>
@@ -77,7 +77,7 @@
                         아이디어를 확인하고 평가해 보세요.
                     </div>
                     <v-btn class="primary lighten-2 mt-5" dark large router to="/ideas">
-                        Evaluate
+                        아이디어 평가하기
                     </v-btn>
                 </v-layout>
             </v-parallax>

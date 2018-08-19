@@ -1,6 +1,7 @@
 <template>
     <div>
-        <p>Profile(User page)</p>
+        <p>Profile</p>
+        <p>my ideas</p>
     </div>
 </template>
 
