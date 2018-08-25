@@ -4,7 +4,7 @@
             <v-flex xs12 class="text-xs-center">
                 <v-progress-circular
                         indeterminate
-                        class="primary--text"
+                        class="blue--text"
                         :width="7"
                         :size="70"
                         v-if="loading">
