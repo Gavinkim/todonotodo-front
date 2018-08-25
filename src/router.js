@@ -6,6 +6,7 @@ import CreateIdea from '@/components/Idea/CreateIdea'
 import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Idea from '@/components/Idea/Idea'
+import Signup from '@/components/User/Signup'
 
 Vue.use(Router)
 
@@ -38,6 +39,11 @@ export default new Router({
           path: '/profile',
           name: 'Profile',
           component: Profile
+      },
+      {
+          path: '/signup',
+          name: 'Sigup',
+          component: Signup
       },
       {
           path: '/signin',

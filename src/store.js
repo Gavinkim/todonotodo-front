@@ -1,6 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
-
+import * as firebase from 'firebase'
 Vue.use(Vuex);
 
 export default new Vuex.Store({
@@ -28,11 +28,15 @@ export default new Vuex.Store({
               favorite:20,
               created: '2018-08-20'
           }
-      ]
+      ],
+      user: null
     },
     mutations: {
         createIdea (state,payload){
             state.loadIdeas.push(payload)
+        },
+        setUser(state,payload){
+            state.user = payload
         }
     },
     actions: {
@@ -43,8 +47,42 @@ export default new Vuex.Store({
                 content: payload.title,
                 created: payload.created,
             };
-            // Reash out to firebase and store it
-            commit('createIdea',idea)
+            // Reach out to firebase and store it
+            commit('createIdea',idea);
+        },
+        signUserUp({commit},payload){
+            firebase.auth().createUserWithEmailAndPassword(payload.email,payload.password)
+                .then(
+                    user => {
+                        const newUser = {
+                            id: user.uid,
+                            createdIdeas: []
+                        };
+                        commit('setUser',newUser);
+                    }
+                )
+                .catch(
+                    error=>{
+                        console.log(error);
+                    }
+                )
+        },
+        signUserIn({commit},payload){
+            firebase.auth().signInWithEmailAndPassword(payload.email,payload.password)
+                .then(
+                    user => {
+                        const newUser = {
+                            id: user.uid,
+                            createdIdeas: []
+                        };
+                        commit('setUser',newUser);
+                    }
+                )
+                .catch(
+                    error=>{
+                        console.log(error);
+                    }
+                )
         }
     },
     getters: {
@@ -65,6 +103,9 @@ export default new Vuex.Store({
         //popular idea top 5
         popularIdeas(state,getters){
             return getters.loadedIdeas.slice(0,2);
+        },
+        user (state){
+            return state.user
         }
     }
 })

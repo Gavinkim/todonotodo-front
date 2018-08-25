@@ -2,13 +2,23 @@ import '@babel/polyfill'
 import Vue from 'vue'
 import './plugins/vuetify'
 import App from './App.vue'
+import * as firebase from 'firebase'
 import router from './router'
 import store from './store'
 
 Vue.config.productionTip = false
 
 new Vue({
-  router,
-  store,
-  render: h => h(App)
+    router,
+    store,
+    render: h => h(App),
+    created() {
+      firebase.initializeApp({
+          apiKey: 'AIzaSyB26TpHRS887dl2kRq7bwDYs9xNHBTgccA',
+          authDomain: 'todonotodo-8d911.firebaseapp.com',
+          databaseURL: 'https://todonotodo-8d911.firebaseio.com',
+          projectId: 'todonotodo-8d911',
+          storageBucket: 'todonotodo-8d911.appspot.com',
+      })
+    }
 }).$mount('#app')

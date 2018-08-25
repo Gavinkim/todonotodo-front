@@ -49,13 +49,28 @@ export default {
   data () {
     return {
         sideNav: false,
-        menuItems: [
-            {icon: 'store',title: 'Ideas',link: '/ideas'},
-            {icon: 'create',title: 'Add',link: '/idea/new'},
-            {icon: 'person',title: 'Profile',link: '/profile'},
-            {icon: 'lock_open',title: 'Sign in',link: '/signin'}
-        ]
     }
+  },
+  computed: {
+      menuItems() {
+          let menuItems = [
+              {icon: 'store',title: 'Ideas',link: '/ideas'},
+              {icon: 'face',title: 'Singup',link: '/signup'},
+              {icon: 'lock_open',title: 'Login',link: '/signin'}
+          ];
+          if(this.userIsAuthenticated){
+              menuItems = [
+                  {icon: 'store',title: 'Ideas',link: '/ideas'},
+                  {icon: 'create',title: 'Add',link: '/idea/new'},
+                  {icon: 'person',title: 'Profile',link: '/profile'},
+                  {icon: 'person',title: 'Logout',link: '/logout'}
+              ]
+          }
+          return menuItems;
+      },
+      userIsAuthenticated() {
+          return this.$store.getters.user !== null && this.$store.getters.user !== undefined
+      }
   }
 }
 </script>
