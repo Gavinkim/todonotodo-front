@@ -5,28 +5,21 @@
                 <v-card class="primary lighten-5">
                     <v-container fluid>
                         <v-layout row wrap>
-                            <v-flex xs5 sm4 md3>
-                                <v-card-media :src="'https://picsum.photos/1280/700/?random'" height="150">
-                                </v-card-media>
-                            </v-flex>
-                            <v-flex xs7 sm8 md9>
+                            <v-flex>
                                 <v-card-title primary-title>
                                     <div>
-                                        <h3 class="info--text mb-3">{{idea.title}}</h3>
+                                        <h3 class="primary--text mb-3">{{idea.title}}</h3>
                                     </div>
                                 </v-card-title>
                                 <v-card-actions>
-                                    <v-btn flat :to="'/ideas/'+idea._id">
+                                    <v-btn class="info" flat :to="'/ideas/'+idea._id">
                                         <v-icon left>arrow_forward</v-icon>
                                         평가하기
                                     </v-btn>
                                     <v-spacer></v-spacer>
-                                    <v-badge overlap>
-                                        <span slot="badge">{{idea.favorite}}</span>
-                                        <v-avatar color="red red--after">
-                                            <v-icon dark>favorite</v-icon>
-                                        </v-avatar>
-                                    </v-badge>
+                                    <v-btn color="red" dark><v-icon dark>favorite</v-icon>
+                                        <span class="ml-2">{{idea.favorite}}</span>
+                                    </v-btn>
                                 </v-card-actions>
                             </v-flex>
                         </v-layout>

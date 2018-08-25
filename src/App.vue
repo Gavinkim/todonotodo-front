@@ -1,7 +1,7 @@
 <template>
-  <v-app>
+  <v-app class="blue lighten-4">
     <!-- 내비게이션 툴바 영역 -->
-    <v-toolbar dark class="primary">
+    <v-toolbar dark class="blue">
       <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav"
       class="hidden-sm-and-up">
       </v-toolbar-side-icon>
@@ -30,7 +30,7 @@
       </v-list>
     </v-navigation-drawer>
     <!-- fixme: footer 정의를 다시 할것 -->
-    <v-footer class="primary dark">
+    <v-footer class="blue">
       <v-layout row wrap align-center>
         <v-flex xs12>
           <div class="white--text ml-3">
