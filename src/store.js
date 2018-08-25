@@ -16,7 +16,7 @@ export default new Vuex.Store({
             state.loadedIdeas = payload;
         },
         createIdea (state,payload){
-            state.loadIdeas.push(payload)
+            state.loadedIdeas.push(payload)
         },
         setUser(state,payload){
             state.user = payload
@@ -59,7 +59,7 @@ export default new Vuex.Store({
         createIdea({commit},payload){
             const idea = {
                 title: payload.title,
-                content: payload.title,
+                content: payload.content,
                 created: payload.created.toISOString(),
                 favorite: 0
             };
