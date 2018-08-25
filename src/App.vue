@@ -1,5 +1,5 @@
 <template>
-  <v-app class="blue lighten-4">
+  <v-app>
     <!-- 내비게이션 툴바 영역 -->
     <v-toolbar dark class="blue">
       <v-toolbar-side-icon @click.native.stop="sideNav = !sideNav"

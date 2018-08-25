@@ -2,7 +2,7 @@
     <v-container>
         <v-layout row wrap>
             <v-flex xs12>
-                <v-card class="primary lighten-5">
+                <v-card class="blue lighten-5">
                     <v-card-title>
                         <h4 class="primary--text">{{idea.title}}</h4>
                     </v-card-title>
