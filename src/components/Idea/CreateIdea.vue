@@ -53,7 +53,8 @@
         data(){
             return {
                 title: '',
-                content: ''
+                content: '',
+                created:''
             }
         },
         computed: {

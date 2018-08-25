@@ -1,6 +1,17 @@
 <template>
     <v-container>
-        <v-layout row wrap v-for="idea in ideas" :key="idea._id" class="mb-2">
+        <v-layout row>
+            <v-flex xs12 class="text-xs-center">
+                <v-progress-circular
+                        indeterminate
+                        class="primary--text"
+                        :width="7"
+                        :size="70"
+                        v-if="loading">
+                </v-progress-circular>
+            </v-flex>
+        </v-layout>
+        <v-layout row wrap v-for="idea in ideas" :key="idea._id" class="mb-2" v-if="!loading">
             <v-flex xs12 class="pt-2"> <!--  sm10 md8 offset-sm1 offset-md2-->
                 <v-card class="blue lighten-5">
                     <v-container fluid>
@@ -27,7 +38,7 @@
                 </v-card>
             </v-flex>
         </v-layout>
-        <v-flex right>
+        <v-flex right v-if="!loading">
             <v-pagination
                     class="pt-4"
                     v-model="page"
@@ -45,6 +56,9 @@
         computed: {
           ideas(){
               return this.$store.getters.loadedIdeas
+          },
+          loading() {
+              return this.$store.getters.loading
           }
         },
         data () {

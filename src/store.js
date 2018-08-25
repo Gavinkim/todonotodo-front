@@ -6,7 +6,7 @@ Vue.use(Vuex);
 export default new Vuex.Store({
     //initial
     state: {
-      loadIdeas:[
+      loadedIdeas:[
           {
               _id:'1',
               title:"Then we'll go with that data file Then we'll go with that data file Then we'll go with that data file Then we'll go with that data file!",
@@ -34,6 +34,9 @@ export default new Vuex.Store({
       error: null
     },
     mutations: {
+        setLoadedIdeas(state,payload){
+            state.loadedIdeas = payload;
+        },
         createIdea (state,payload){
             state.loadIdeas.push(payload)
         },
@@ -51,15 +54,47 @@ export default new Vuex.Store({
         }
     },
     actions: {
+        loadIdeas ({commit}){
+          commit('setLoading',true);
+          firebase.database().ref('todonotodo').once('value')
+              .then((data)=>{
+                  const ideas = [];
+                  const obj = data.val();
+                  for(let key in obj){
+                      ideas.push({
+                          _id: key,
+                          title: obj[key].title,
+                          content: obj[key].content,
+                          created: obj[key].created
+                      })
+                  }
+                  commit('setLoadedIdeas',ideas);
+                  commit('setLoading',false);
+              })
+              .catch(
+                  (error)=>{
+                      commit('setLoading',true);
+                  }
+              )
+        },
         createIdea({commit},payload){
             const idea = {
-               _id: 'asdas',
                 title: payload.title,
                 content: payload.title,
-                created: payload.created,
+                created: payload.created.toISOString(),
+                favorite: 0
             };
-            // Reach out to firebase and store it
-            commit('createIdea',idea);
+            firebase.database().ref('todonotodo').push(idea)
+                .then((data) => {
+                    const key = data.key;
+                    commit('createIdea',{
+                        ...idea,
+                        _id: key
+                    });
+                })
+                .catch((error)=>{
+                    console.log(error);
+                });
         },
         signUserUp({commit},payload){
             commit('setLoading',true);
@@ -110,16 +145,16 @@ export default new Vuex.Store({
         }
     },
     getters: {
-        // all idea
+        // all idea from firebase
         loadedIdeas (state){
-            return state.loadIdeas.sort((ideaA, ideaB)=>{
+            return state.loadedIdeas.sort((ideaA, ideaB)=>{
                 return ideaA.created > ideaB.created;
             });
         },
         // find idea by id
         loadedIdea(state){
             return (ideaId) => {
-                return state.loadIdeas.find((idea)=>{
+                return state.loadedIdeas.find((idea)=>{
                     return idea._id === ideaId
                 })
             }

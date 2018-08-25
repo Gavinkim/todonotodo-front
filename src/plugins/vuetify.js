@@ -22,6 +22,7 @@ import {
     VSubheader,
     VPagination,
     VAlert,
+    VProgressCircular,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -49,6 +50,7 @@ Vue.use(Vuetify, {
       VSubheader,
       VPagination,
       VAlert,
+      VProgressCircular,
     transitions
   },
   theme: {

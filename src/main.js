@@ -23,6 +23,8 @@ new Vue({
           databaseURL: 'https://todonotodo-8d911.firebaseio.com',
           projectId: 'todonotodo-8d911',
           storageBucket: 'todonotodo-8d911.appspot.com',
-      })
+      });
+
+      this.$store.dispatch('loadIdeas');
     }
 }).$mount('#app')
