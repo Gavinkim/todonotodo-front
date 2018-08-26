@@ -76,19 +76,19 @@
         },
         computed: {
           comparePasswords() {
-              return this.password !== this.confirmPassword ? 'Password do not match': '';
+              return this.password !== this.confirmPassword ? 'Password do not match': ''
           },
           checkPasswordLength(){
-            return this.password.length < 6 ? 'Password should be at least 6 characters': '';
+            return this.password.length < 6 ? 'Password should be at least 6 characters': ''
           },
           user() {
              return this.$store.getters.user
           },
           error(){
-              return this.$store.getters.error;
+              return this.$store.getters.error
           },
           loading() {
-              return this.$store.getters.loading;
+              return this.$store.getters.loading
           }
         },
         watch: {
@@ -102,10 +102,10 @@
             onSignup() {
                 //Vuex
                 //console.log({email: this.email,password: this.password,confirmPassword: this.confirmPassword});
-                this.$store.dispatch('signUserUp',{email: this.email,password:this.password});
+                this.$store.dispatch('signUserUp',{email: this.email,password:this.password})
             },
             onDismissed() {
-                this.$store.dispatch('clearError');
+                this.$store.dispatch('clearError')
             }
         }
     }

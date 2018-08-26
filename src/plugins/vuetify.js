@@ -23,6 +23,7 @@ import {
     VPagination,
     VAlert,
     VProgressCircular,
+    VDialog,
   transitions
 } from 'vuetify'
 import 'vuetify/src/stylus/app.styl'
@@ -44,13 +45,14 @@ Vue.use(Vuetify, {
     VJumbotron,
     VParallax,
     VTextarea,
-      VForm,
-      VBadge,
-      VAvatar,
-      VSubheader,
-      VPagination,
-      VAlert,
-      VProgressCircular,
+    VForm,
+    VBadge,
+    VAvatar,
+    VSubheader,
+    VPagination,
+    VAlert,
+    VProgressCircular,
+    VDialog,
     transitions
   },
   theme: {

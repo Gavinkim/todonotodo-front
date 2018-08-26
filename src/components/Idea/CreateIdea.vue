@@ -59,7 +59,7 @@
         },
         computed: {
             formIsValid() {
-                return this.title !=='' && this.content !== '';
+                return this.title !=='' && this.content !== ''
             }
         },
         methods: {
@@ -72,8 +72,8 @@
                     content: this.content,
                     created: new Date()
                 };
-                this.$store.dispatch('createIdea',ideaData);
-                this.$router.push('/ideas');
+                this.$store.dispatch('createIdea',ideaData)
+                this.$router.push('/ideas')
             }
         }
     }

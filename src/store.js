@@ -1,7 +1,7 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as firebase from 'firebase'
-Vue.use(Vuex);
+Vue.use(Vuex)
 
 export default new Vuex.Store({
     //initial
@@ -13,10 +13,24 @@ export default new Vuex.Store({
     },
     mutations: {
         setLoadedIdeas(state,payload){
-            state.loadedIdeas = payload;
+            state.loadedIdeas = payload
         },
         createIdea (state,payload){
             state.loadedIdeas.push(payload)
+        },
+        updateIdea(state,payload){
+          const idea = state.loadedIdeas.find(idea => {
+              return idea.id === payload.id
+          });
+          if(payload.title){
+              idea.title = payload.title
+          }
+          if(payload.content){
+              idea.content = payload.content
+          }
+          if(payload.title || payload.content){
+              idea.updated = new Date()
+          }
         },
         setUser(state,payload){
             state.user = payload
@@ -33,27 +47,27 @@ export default new Vuex.Store({
     },
     actions: {
         loadIdeas ({commit}){
-          commit('setLoading',true);
+          commit('setLoading',true)
           firebase.database().ref('todonotodo').once('value')
               .then((data)=>{
-                  const ideas = [];
-                  const obj = data.val();
+                  const ideas = []
+                  const obj = data.val()
                   for(let key in obj){
                       ideas.push({
-                          _id: key,
+                          id: key,
                           title: obj[key].title,
                           content: obj[key].content,
                           favorite: obj[key].favorite,
                           created: obj[key].created,
-                          user_id: obj[key].user_id
+                          creatorId: obj[key].creatorId
                       })
                   }
-                  commit('setLoadedIdeas',ideas);
-                  commit('setLoading',false);
+                  commit('setLoadedIdeas',ideas)
+                  commit('setLoading',false)
               })
               .catch(
                   (error)=>{
-                      commit('setLoading',true);
+                      commit('setLoading',true)
                   }
               )
         },
@@ -63,61 +77,81 @@ export default new Vuex.Store({
                 content: payload.content,
                 created: payload.created.toISOString(),
                 favorite: 0,
-                user_id: getters.user.id
+                creatorId: getters.user.id
             };
             firebase.database().ref('todonotodo').push(idea)
                 .then((data) => {
-                    const key = data.key;
+                    const key = data.key
                     commit('createIdea',{
                         ...idea,
-                        _id: key
+                        id: key
                     });
                 })
                 .catch((error)=>{
-                    console.log(error);
+                    console.log(error)
                 });
         },
-        signUserUp({commit},payload){
+        updateIdeaData({commit},payload){
             commit('setLoading',true);
-            commit('clearError');
+            const updateObj = {};
+            if(payload.title) {
+                updateObj.title=payload.title;
+            }
+            if(payload.content){
+                updateObj.content = payload.content;
+            }
+            if(payload.title || payload.content){
+                updateObj.updated = new Date()
+            }
+            firebase.database().ref('todonotodo').child(payload.id).update(updateObj)
+                .then(()=>{
+                    commit('setLoading',false)
+                    commit('updateIdea',payload)
+                })
+                .catch(error => {
+                    console.log(error)
+                    commit('setLoading',false)
+                })
+        },
+        signUserUp({commit},payload){
+            commit('setLoading',true)
+            commit('clearError')
             firebase.auth().createUserWithEmailAndPassword(payload.email,payload.password)
                 .then(
                     user => {
-                        commit('setLoading',false);
+                        commit('setLoading',false)
                         const newUser = {
                             id: user.uid,
                             createdIdeas: []
                         };
-                        commit('setUser',newUser);
+                        commit('setUser',newUser)
                     }
                 )
                 .catch(
                     error=>{
-                        commit('setLoading',false);
-                        commit('setError',error);
-                        console.log(error);
+                        commit('setLoading',false)
+                        commit('setError',error)
                     }
                 )
         },
         signUserIn({commit},payload){
-            commit('setLoading',true);
-            commit('clearError');
+            commit('setLoading',true)
+            commit('clearError')
             firebase.auth().signInWithEmailAndPassword(payload.email,payload.password)
                 .then(
                     user => {
-                        commit('setLoading',false);
+                        commit('setLoading',false)
                         const newUser = {
                             id: user.uid,
                             createdIdeas: []
                         };
-                        commit('setUser',newUser);
+                        commit('setUser',newUser)
                     }
                 )
                 .catch(
                     error=>{
-                        commit('setLoading',false);
-                        commit('setError',error);
-                        console.log(error);
+                        commit('setLoading',false)
+                        commit('setError',error)
                     }
                 )
         },
@@ -125,37 +159,37 @@ export default new Vuex.Store({
           commit('setUser',{id:payload.uid,createdIdeas: []})
         },
         logout({commit}){
-            firebase.auth().signOut();
-            commit('setUser',null);
+            firebase.auth().signOut()
+            commit('setUser',null)
         },
         clearError({commit}){
-            commit('clearError');
+            commit('clearError')
         }
     },
     getters: {
         // all idea from firebase
         loadedIdeas (state){
             return state.loadedIdeas.sort((ideaA, ideaB)=>{
-                return ideaA.created > ideaB.created;
+                return ideaA.created > ideaB.created
             });
         },
         // find idea by id
         loadedIdea(state){
             return (ideaId) => {
                 return state.loadedIdeas.find((idea)=>{
-                    return idea._id === ideaId
+                    return idea.id === ideaId
                 })
             }
         },
         //popular idea top 5
         popularIdeas(state,getters){
-            return getters.loadedIdeas.slice(0,2);
+            return getters.loadedIdeas.slice(0,2)
         },
         user (state){
             return state.user
         },
         loading (state){
-            return state.loading;
+            return state.loading
         },
         error(state) {
             return state.error

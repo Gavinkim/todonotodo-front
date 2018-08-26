@@ -63,32 +63,32 @@
         },
         computed: {
             checkPasswordLength(){
-                return this.password.length < 6 ? 'Password should be at least 6 characters': '';
+                return this.password.length < 6 ? 'Password should be at least 6 characters': ''
             },
             user() {
                 return this.$store.getters.user
             },
             error(){
-                return this.$store.getters.error;
+                return this.$store.getters.error
             },
             loading() {
-                return this.$store.getters.loading;
+                return this.$store.getters.loading
             }
         },
         watch: {
             user(value){
                 if(value != null && value !== undefined){
-                    this.$router.push('/');
+                    this.$router.push('/')
                 }
             }
         },
         methods: {
             onSignin() {
                 //Vuex
-                this.$store.dispatch('signUserIn',{email: this.email,password:this.password});
+                this.$store.dispatch('signUserIn',{email: this.email,password:this.password})
             },
             onDismissed() {
-                this.$store.dispatch('clearError');
+                this.$store.dispatch('clearError')
             }
         }
     }
