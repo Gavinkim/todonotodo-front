@@ -38,6 +38,7 @@
                 </v-card>
             </v-flex>
         </v-layout>
+        <!--fixme: 데이터가 아무거도 없거나, 서버로부터 받지 못할 경우 아래 페이징 처리가 안보여야 한다.-->
         <v-flex right v-if="!loading">
             <v-pagination
                     class="pt-4"

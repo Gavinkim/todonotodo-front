@@ -13,6 +13,9 @@
         <v-btn flat v-for="item in menuItems" :key="item.title"  router :to="item.link">
           <v-icon left>{{ item.icon }}</v-icon> {{ item.title }}
         </v-btn>
+        <v-btn flat v-if="userIsAuthenticated" @click="onLogout">
+          <v-icon left>exit_to_app</v-icon> Logout
+        </v-btn>
       </v-toolbar-items>
     </v-toolbar>
       <main>
@@ -26,6 +29,12 @@
             <v-icon>{{ item.icon }}</v-icon>
           </v-list-tile-action>
           <v-list-tile-content>{{ item.title }}</v-list-tile-content>
+        </v-list-tile>
+        <v-list-tile v-if="userIsAuthenticated" @click="onLogout">
+          <v-list-tile-action>
+            <v-icon>exit_to_app</v-icon>
+          </v-list-tile-action>
+          <v-list-tile-content>Logout</v-list-tile-content>
         </v-list-tile>
       </v-list>
     </v-navigation-drawer>
@@ -56,14 +65,13 @@ export default {
           let menuItems = [
               {icon: 'store',title: 'Ideas',link: '/ideas'},
               {icon: 'face',title: 'Singup',link: '/signup'},
-              {icon: 'lock_open',title: 'Login',link: '/signin'}
+              {icon: 'lock_open',title: 'Signin',link: '/signin'}
           ];
           if(this.userIsAuthenticated){
               menuItems = [
                   {icon: 'store',title: 'Ideas',link: '/ideas'},
                   {icon: 'create',title: 'Add',link: '/idea/new'},
-                  {icon: 'person',title: 'Profile',link: '/profile'},
-                  {icon: 'person',title: 'Logout',link: '/logout'}
+                  {icon: 'person',title: 'Profile',link: '/profile'}
               ]
           }
           return menuItems;
@@ -71,6 +79,11 @@ export default {
       userIsAuthenticated() {
           return this.$store.getters.user !== null && this.$store.getters.user !== undefined
       }
+  },
+  methods: {
+    onLogout() {
+        this.$store.dispatch('logout')
+    }
   }
 }
 </script>

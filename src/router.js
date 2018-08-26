@@ -7,6 +7,7 @@ import Profile from '@/components/User/Profile'
 import Signin from '@/components/User/Signin'
 import Idea from '@/components/Idea/Idea'
 import Signup from '@/components/User/Signup'
+import AuthGuard from './auth-guard'
 
 Vue.use(Router)
 
@@ -27,7 +28,8 @@ export default new Router({
       {
           path: '/idea/new',
           name: 'CreateIdea',
-          component: CreateIdea
+          component: CreateIdea,
+          beforeEnter: AuthGuard
       },
       {
           path: '/ideas/:id',
@@ -38,7 +40,8 @@ export default new Router({
       {
           path: '/profile',
           name: 'Profile',
-          component: Profile
+          component: Profile,
+          beforeEnter: AuthGuard
       },
       {
           path: '/signup',

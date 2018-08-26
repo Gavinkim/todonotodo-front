@@ -5,12 +5,12 @@ import App from './App.vue'
 import * as firebase from 'firebase'
 import router from './router'
 import store from './store'
-//import DateFilter from './filters/date'
+import DateFilter from './filters/date'
 
 import AlertCmp from './components/Shared/Alert'
 
 Vue.config.productionTip = false;
-//Vue.filter('date',DateFilter);
+Vue.filter('date',DateFilter);
 Vue.component('app-alert',AlertCmp);
 new Vue({
     router,
@@ -24,7 +24,12 @@ new Vue({
           projectId: 'todonotodo-8d911',
           storageBucket: 'todonotodo-8d911.appspot.com',
       });
-
+      //trigger
+      firebase.auth().onAuthStateChanged((user)=>{
+         if(user){
+             this.$store.dispatch('autoSignIn',user)
+         }
+      });
       this.$store.dispatch('loadIdeas');
     }
 }).$mount('#app')

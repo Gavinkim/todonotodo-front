@@ -44,7 +44,8 @@ export default new Vuex.Store({
                           title: obj[key].title,
                           content: obj[key].content,
                           favorite: obj[key].favorite,
-                          created: obj[key].created
+                          created: obj[key].created,
+                          user_id: obj[key].user_id
                       })
                   }
                   commit('setLoadedIdeas',ideas);
@@ -56,12 +57,13 @@ export default new Vuex.Store({
                   }
               )
         },
-        createIdea({commit},payload){
+        createIdea({commit,getters},payload){
             const idea = {
                 title: payload.title,
                 content: payload.content,
                 created: payload.created.toISOString(),
-                favorite: 0
+                favorite: 0,
+                user_id: getters.user.id
             };
             firebase.database().ref('todonotodo').push(idea)
                 .then((data) => {
@@ -118,6 +120,13 @@ export default new Vuex.Store({
                         console.log(error);
                     }
                 )
+        },
+        autoSignIn({commit},payload){
+          commit('setUser',{id:payload.uid,createdIdeas: []})
+        },
+        logout({commit}){
+            firebase.auth().signOut();
+            commit('setUser',null);
         },
         clearError({commit}){
             commit('clearError');
